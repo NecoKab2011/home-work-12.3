@@ -7,12 +7,12 @@ const mood = (user) => {
   user.mood = "happy";
   return user;
 };
-const hobby = (user) => {
-  user.hobby = "skydiving";
+const hobby = ({hobby} = user) => {
+  hobby = "skydiving";
   return user;
 };
-const premium = (user) => {
-  user.premium = false;
+const premium = ({premium} = user) => {
+  premium = false;
   return user;
 };
 const showAllKeys = (user) => {
@@ -33,11 +33,9 @@ const man = {
   age: 52,
   manName: "Alex",
   wieght: "1.85m",
+  length: "4"
 };
-const countElemens = (obj) => {
-  const keys = Object.keys(obj);
-  return keys.length;
-};
+const countElemens = ({length} = obj) => length;
 console.log(countElemens(man));
 
 const employees = {
@@ -69,13 +67,8 @@ const salaryOfEmployees = {
   Leni: 8000,
   Lara: 7000,
 };
-const countTotalSalary = (employees) => {
-  const saleries = Object.values(employees);
-  let sumSal = 0;
-  for (const salery of saleries) {
-    sumSal += salery;
-  }
-  return sumSal;
+const countTotalSalary = ({Tristan, Maxi, Noah, Leni, Lara} = employees) => {
+  Tristan + Maxi + Noah + Leni + Lara;
 };
 console.log(countTotalSalary(salaryOfEmployees));
 
@@ -143,13 +136,25 @@ const products = [
     quantity: 10,
   },
 ];
-const calculateTotalPrice = (prodcuts, productN) => {
+const calculateTotalPrice = (products, productN) => {
   let totalPrice = 0;
-  for (const product of prodcuts) {
-    if (product === productN) {
-      totalPrice = product.price * product.quantity;
+  for (const product of products) {
+    const { name, price, quantity } = product;
+    if (name === productN) {
+      totalPrice = price * quantity;
     }
   }
   return totalPrice;
 };
 console.log(calculateTotalPrice(products, "cucumber"));
+
+console.log("///////////Додаткове завдання для 13 ДЗ///////////")
+
+// const account = {
+//   name: "Влад III",
+//   surname: "Дракула",
+//   age: 593,
+//   balance: 0,
+//   transactions: []
+// };
+
